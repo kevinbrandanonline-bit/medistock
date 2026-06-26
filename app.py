@@ -38,9 +38,12 @@ inventory = {
 
 app = Flask(__name__)
 
+import os
+
 client = genai.Client(
-    api_key="AQ.Ab8RN6LeLdAuD4a6VQ-GMgEdxwDhQlapQcULg4zYG2Im6DD20wpython"
+    api_key=os.environ["GEMINI_API_KEY"]
 )
+
 
 # ---------------- HTML ---------------- #
 
@@ -374,5 +377,10 @@ Please consult a qualified healthcare professional.
 
 # ---------------- RUN ---------------- #
 
+
+
+
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
